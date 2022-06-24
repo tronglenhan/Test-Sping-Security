@@ -14,12 +14,10 @@ public class Test {
 
     }
 
-    public static final String SEQ_NAME ="TEST_SEQ";
+
 
     @Id
     @Column(name = "ID")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SEQ_NAME)
-    @SequenceGenerator(name = SEQ_NAME, allocationSize = 1, sequenceName = SEQ_NAME)
     private long id;
 
     @Column(name = "NAME")

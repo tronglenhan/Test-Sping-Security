@@ -5,13 +5,11 @@ import javax.persistence.*;
 @Entity
 @Table(name = "USERS")
 public class User {
-    public static final String SEQ_NAME ="USERS_SEQ";
+
 
 
     @Id
     @Column(name = "ID")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SEQ_NAME)
-    @SequenceGenerator(name = SEQ_NAME, allocationSize = 1, sequenceName = SEQ_NAME)
     private Long id;
     @Column(name = "USERNAME")
     private String username;

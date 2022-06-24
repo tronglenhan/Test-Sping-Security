@@ -8,11 +8,13 @@ public class HomeController {
 
     @GetMapping("/home")
     public String home(){
+
         return "Hello security";
     }
 
     @GetMapping("/admin")
     public String admin(){
+
         return "Hello admin";
     }
 }

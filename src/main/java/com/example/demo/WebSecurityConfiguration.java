@@ -25,21 +25,19 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 //    @Autowired
 //    private DataSource dataSource;
 //
-//    @Bean
-//    AuthenticationProvider authenticationProvider(){
-//        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-//        provider.setUserDetailsService(userDetailsService);
-//        provider.setPasswordEncoder(new BCryptPasswordEncoder());
-//        return provider;
-//    }
-
-
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService);
-       // auth.authenticationProvider()
-        //fgfgfgfgf
+    @Bean
+    AuthenticationProvider authenticationProvider(){
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+        provider.setUserDetailsService(userDetailsService);
+        provider.setPasswordEncoder(new BCryptPasswordEncoder());
+        return provider;
     }
+
+
+//    @Override
+//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.authenticationProvider(authenticationProvider());
+//    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -47,13 +45,16 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/")
                 .permitAll()
                 .antMatchers("/home")
-                .hasAuthority("USER")
+                .hasAnyAuthority("USER","ADMIN")
                 .antMatchers("/admin")
-                .hasAuthority("ADMIN")
+                .hasAnyAuthority("ADMIN")
                 .anyRequest()
                 .authenticated()
                 .and()
-                .formLogin();
+                .formLogin()
+                .and()
+                .logout();
+        http.csrf().disable();
 
     }
 
