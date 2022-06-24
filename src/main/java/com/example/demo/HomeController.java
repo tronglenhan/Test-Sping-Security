@@ -6,13 +6,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HomeController {
 
-    @GetMapping("/home")
+    @GetMapping("/api/home")
     public String home(){
 
         return "Hello security";
     }
 
-    @GetMapping("/admin")
+    @GetMapping("/api/admin")
     public String admin(){
 
         return "Hello admin";
